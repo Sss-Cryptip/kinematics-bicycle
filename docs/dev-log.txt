@@ -1,0 +1,6 @@
+Development log: 
+
+@ 
+1. Tasks
+2. Lessons
+3. Further dev 
