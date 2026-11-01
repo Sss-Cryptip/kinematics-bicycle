@@ -1,25 +1,32 @@
-#model logic 
+#model logic simulating as a base of mini-fsae project
 
 import numpy as np
 
 #given accelertion and steering angle what does a bicycle do 
-
-# define current position x
-# define current position y 
-# define current yaw 
-#define time step of each update (0.05s?)
-
-#define whats needed for derivation 
-#Wheel base L = 210mm
+'''Define parameters for the kinematic bicycle model'''
+L :float = 0.22 # Wheelbase in meters (~22cm as base line)
 
 
-# Use a + time step give to derive velocity 
+'''Derive formulas physics for bicycle model
+    State = [x, y, yaw, v]
+    e.g. model_derivation([0.0, 0.0, 0.0, 0.0], 1.0, 10.0, 0.05)
+'''
+def model_derivation(state,a :float, delta :float, dt :float):
+    [x, y, yaw, v] = state
+    
+    v_new = v + a * dt
+    deltar = np.radians(delta)
+    yaw_rate :float = v_new/L * np.tan(deltar)
 
-# use instant. velocity to get new x, y position 
-# use given steering angle to derive yaw 
+    x_dot :float = v_new * np.cos(yaw)
+    y_dot :float = v_new * np.sin(yaw)
+    new_state = np.array([x + x_dot * dt, y + y_dot * dt, yaw + yaw_rate * dt, v_new])
+    return new_state
 
-
-# use yaw rate * dt to get new state 
-# output the new state as an array / message 
-#return [x, y, yaw, v]
-
+'''Calculate radius of when turning
+    e.g. radius(1.0, 10.0)
+'''
+def radius(v :float, delta :float):
+    deltar = np.radians(delta)
+    r_path = L /v * np.tan(deltar)
+    return r_path
