@@ -20,7 +20,7 @@ def velocity_check(v :float):
     num_check("Velocity", v)
     if v < 0.0 or v > 5.0:
         raise ValueError("Velocity must be between 0 and 5 m/s.")
- 
+
 
 
 def dt_check(dt :float):
@@ -30,8 +30,22 @@ def dt_check(dt :float):
 
 
 def num_check(name, num :float):
-    correct = np.isinfinite(num)
-    if correct:
-        raise ValueError(f"{name} must be a finite number.")
+    correct = np.isfinite(num)
     if not correct:
+        raise ValueError(f"{name} must be a finite number.")
+    if not isinstance(num, (int, float)):
         raise TypeError(f"{name} must be a number.")
+
+#Check for malformed state output
+def state_check(state):
+    if not isinstance(state, (list, np.ndarray)):
+            raise TypeError("State must be a list or numpy array.")
+    if len(state) != 4:
+        raise ValueError("Not the right number of parameters to unpack. 4 element is expected.")
+    else:
+        x, y, yaw, v = state
+        num_check("x", x)
+        num_check("y", y)
+        num_check("yaw", yaw)
+        velocity_check(v)
+    

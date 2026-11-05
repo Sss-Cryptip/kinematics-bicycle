@@ -17,7 +17,8 @@ def model_derivation(state,a :float, delta :float, dt :float):
     v_new = v + a * dt
     
     deltar = np.radians(delta)
-    if deltar == 0.0:
+    #rounded to 10 dc to avoid inf/NaN errors
+    if round(deltar,10) == 0.0:
         yaw_rate :float = 0.0
     else:
         yaw_rate :float = v_new/L * np.tan(deltar)
