@@ -15,13 +15,19 @@ def model_derivation(state,a :float, delta :float, dt :float):
     [x, y, yaw, v] = state
     
     v_new = v + a * dt
+    
     deltar = np.radians(delta)
-    yaw_rate :float = v_new/L * np.tan(deltar)
+    if deltar == 0.0:
+        yaw_rate :float = 0.0
+    else:
+        yaw_rate :float = v_new/L * np.tan(deltar)
 
     x_dot :float = v_new * np.cos(yaw)
     y_dot :float = v_new * np.sin(yaw)
     new_state = np.array([x + x_dot * dt, y + y_dot * dt, yaw + yaw_rate * dt, v_new])
     return new_state
+
+    
 
 '''Calculate radius of when turning
     e.g. radius(1.0, 10.0)

@@ -23,7 +23,8 @@ while True:
         initial_state = new_state
 
     except ValueError:
-        print("Invalid input.")
+        print("Invalid input: Please enter two numbers separated by a comma.")
+        
     except KeyboardInterrupt:
         print("Exiting the simulation.")
         break
