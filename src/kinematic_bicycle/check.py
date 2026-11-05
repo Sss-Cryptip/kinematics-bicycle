@@ -3,8 +3,9 @@ import numpy as np
 
 #counter error rises from angle = 90 -> tangent -> undefined
 def steering_angle_check(delta :float):
+    #delta = round(delta, 1)
     num_check("Steering angle", delta)
-    if delta not in range(-90.0, 91.0) or not np.isfinite(delta):
+    if delta < -90.0 or delta > 90.0 or not np.isfinite(delta):
         raise ValueError("Steering angle must be between -90 and 90 degrees.")
     
 
@@ -48,4 +49,15 @@ def state_check(state):
         num_check("y", y)
         num_check("yaw", yaw)
         velocity_check(v)
+        
+    
+def input_check(a,delta):
+    input = a, delta
+    acceleration_check(a)
+    steering_angle_check(delta)
+    
+    if "," not in str(input):
+        raise ValueError("Input must be separated by a comma.")
+    if len(input) != 2:
+        raise ValueError("Input must be two numbers separated by a comma.")
     

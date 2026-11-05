@@ -2,6 +2,7 @@
 
 import numpy as np
 from model import model_derivation
+import check
 
 '''Define state params :
 Units 
@@ -22,8 +23,8 @@ while True:
         print(f"Update New state: {new_state}")
         initial_state = new_state
 
-    except ValueError:
-        print("Invalid input: Please enter two numbers separated by a comma.")
+    except ValueError as e:
+        print(f"Invalid input: {e}")
         
     except KeyboardInterrupt:
         print("Exiting the simulation.")
