@@ -32,6 +32,7 @@ Integrated with a fixed-step Euler update.
 model.py   the model of bicycle
 test_model.py        constant-steer test and plot
 tests/             verification test (pytest)
+results/           docs and plots relevant
 ```
 
 ## Roadmap

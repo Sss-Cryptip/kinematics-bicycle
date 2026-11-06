@@ -11,9 +11,16 @@ run_time_steps = 3000
 
 def r_circle_fit_check(x, y):
     #from x^2 + y^2 = R^2 
-    #Use matrix to solve instead
-    x_y = x**2 + y **2
-    R = np.sqrt(x_y)
+    #Use matrix to solve instead [x,y,1]
+    A =  A = np.column_stack([x, y, np.ones_like(x)])
+    C = x**2 + y **2
+    p, q, c = variable
+    #least square solver*
+    variable = np.linalg.lstsq(A, C, rcond=None)[0]
+    x_c, y_c = p/2, q/2
+    R = np.sqrt(c + x_c**2 + y_c**2)
+    return R
+#outputs the R of circle of the path
 
 
 def measure(deg :float, ):
