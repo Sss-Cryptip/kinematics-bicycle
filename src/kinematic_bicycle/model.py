@@ -5,15 +5,17 @@ import check
 
 #given accelertion and steering angle what does a bicycle do 
 '''Define parameters for the kinematic bicycle model'''
-L :float = 0.22 # Wheelbase in meters (~22cm as base line)
 
+L :float = 0.22 # Wheelbase in meters (~22cm as base line)
+    
 
 '''Derive formulas physics for bicycle model
     State = [x, y, yaw, v]
     e.g. model_derivation([0.0, 0.0, 0.0, 0.0], 1.0, 10.0, 0.05)
 '''
 def model_derivation(state,a :float, delta :float, dt :float):
-    check.input_check(a, delta)
+    check.acceleration_check(a)
+    check.steering_angle_check(delta)
     check.dt_check(dt)
     
     [x, y, yaw, v] = state

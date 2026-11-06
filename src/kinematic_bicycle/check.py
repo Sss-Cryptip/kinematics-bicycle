@@ -51,13 +51,15 @@ def state_check(state):
         velocity_check(v)
         
     
-def input_check(a,delta):
-    input = a, delta
-    acceleration_check(a)
-    steering_angle_check(delta)
-    
-    if "," not in str(input):
+def input_check(cmd):
+    elements = [item.strip() for item in cmd.split(",")]
+    for item in elements:
+        input_value = float(item)
+        if not isinstance(input_value, float):
+            #bug here is confusing
+            raise ValueError("Input must be two numbers separated by a comma.")
+    if len(elements) != 2:
+        raise ValueError("Input must contain exactly two values separated by a comma.")
+    if "," not in cmd:
         raise ValueError("Input must be separated by a comma.")
-    if len(input) != 2:
-        raise ValueError("Input must be two numbers separated by a comma.")
-    
+
