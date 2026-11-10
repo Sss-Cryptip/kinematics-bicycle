@@ -11,6 +11,8 @@ miniature rc project to learn vehicle control from first principles.
 git clone git@github.com:Sss-Cryptip/kinematics-bicycle.git
 cd kinematics-bicycle
 python3 -m venv .venv && source .venv/bin/activate
+cd tests
+python test_config.py
 pip install -r requirements.txt
 pytest                  # runs the verification test
 ```
@@ -32,7 +34,7 @@ Integrated with a fixed-step Euler update.
 model.py   the model of bicycle
 test_model.py        constant-steer test and plot
 tests/             verification test (pytest)
-results/           docs and plots relevant
+results/           docs and plots
 ```
 
 ## Roadmap
@@ -45,4 +47,5 @@ results/           docs and plots relevant
 
 ## Limitations and what I learned
 - Kinematic model: ignores tyre slip, so it is only valid at low speed and low lateral acceleration
-- Euler integration: small steps needed for accuracy
+- Euler integration: smaller steps needed for accuracy
+- Model Validation: 

@@ -1,6 +1,8 @@
 #Check parameters validity (only substitution for now)
 import numpy as np
 
+'''Checking input as valid numbers and in the capped range'''
+
 #counter error rises from angle = 90 -> tangent -> undefined
 def steering_angle_check(delta :float):
     #delta = round(delta, 1)
