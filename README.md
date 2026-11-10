@@ -5,6 +5,8 @@ miniature rc project to learn vehicle control from first principles.
 
 @Current Stage : Phase 01
 
+![Validation](image.png)
+
 
 ## Quick start
 ```bash
